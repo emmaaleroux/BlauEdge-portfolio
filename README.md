@@ -1,7 +1,10 @@
-# 🌊 BlauEdge — Marine Ecosystem Recovery Monitor
+# 🌊 BlauEdge — Marine Biodiversity Monitor
 
-> **HackUPC 2026** · EdgeAI for a Resilient and Greener Barcelona  
-> Built with Arduino UNO Q · Edge Impulse · Python · HTML
+**Personal portfolio version of BlauEdge, originally developed as a team project at HackUPC 2026.**
+
+> **HackUPC 2026** · EdgeAI for a Resilient and Greener Barcelona
+> 
+> Built with **Arduino UNO Q · Edge Impulse · FOMO · Python · HTML/CSS/JavaScript**
 
 ---
 
@@ -15,11 +18,11 @@ Barcelona's breakwaters (*escolleres*) could be thriving underwater sanctuaries,
 
 ## What It Does
 
-BlauEdge is a real-time marine ecosystem monitoring system that evaluates the health of coastal zones along Barcelona's coastline using two inputs:
+BlauEdge is a real-time marine ecosystem monitoring system that evaluates the health of coastal zones along Barcelona's coastline using environmental sensing and AI-based species recognition:
 
-- **Temperature sensing** — detects thermal stress events that signal ecosystem decline
-- **pH level** — monitors water acidity to detect acidification events that threaten shell-based marine life and coral health (currently simulated for prototype validation).
-- **AI species detection** — uses a camera and an on-device Edge Impulse model to identify marine species on the breakwater surface
+- **Temperature sensing** — detects thermal stress events that signal ecosystem decline.
+- **pH monitoring** — monitors water acidity to detect acidification events (currently simulated for prototype validation).
+- **AI species recognition** — uses a camera and an on-device Edge Impulse model to identify marine species on the breakwater surface.
 
 The results are streamed live to an **interactive web dashboard** with a real map of the Barcelona coastline, showing the health state of each monitored zone in real time.
 
@@ -32,7 +35,7 @@ A **simulation mode** keeps the dashboard fully functional even without hardware
 We used the **Arduino App Lab** architecture to create a seamless hardware-to-browser experience:
 
 1. The **Arduino UNO Q** (`sketch.ino`) reads the Modulino Thermo sensor and sends data to the board's internal Python environment via the Arduino Bridge.
-2. A **Python Backend (`main.py`)** running directly on the board receives the hardware data, stores it in a Time-Series Database, handles the camera video stream, and serves a local web server via the App Lab `WebUI` library.
+2. A **Python backend** (`main.py`) running directly on the board receives the hardware data, stores it in a Time-Series Database, handles the camera video stream, and serves a local web server via the App Lab `WebUI` library.
 3. The **HTML Dashboard (`index.html`)** connects to the board's IP, polling the REST API for historical data and receiving real-time socket updates to power the live map and sensor readings.
 
 ---
@@ -41,9 +44,9 @@ We used the **Arduino App Lab** architecture to create a seamless hardware-to-br
 
 | Component | Role |
 |---|---|
-| **Arduino UNO Q** | Main brain — runs the Python server, web UI, and AI models on-device |
+| **Arduino UNO Q** | Main computing platform — runs the Python server, web UI, and AI models on-device |
 | **Modulino Thermo** | Water temperature — detects thermal stress events |
-| **USB Web Camera** | Captures breakwater surface for live video feed and species detection |
+| **USB Web Camera** | Captures breakwater surface for live video feed and species detection and recognition |
 
 ---
 
@@ -64,6 +67,17 @@ The detected species count, combined with the temperature reading, feeds a simpl
 | 🔵 **RECOVERING** | Moderate conditions, some biological activity |
 | 🔴 **STRESSED** | Temperature spike above threshold |
 | ⚫ **INACTIVE** | No species detected, unfavourable conditions |
+
+---
+
+## My Contribution
+
+This was a team project developed at HackUPC 2026. My main contributions were:
+
+- Collected and manually labelled a custom dataset of local marine species.
+- Trained the **Edge Impulse FOMO object-detection model** for real-time species recognition.
+- Worked on the **Arduino UNO Q hardware integration**.
+- Integrated the AI species-recognition component into the monitoring system.
 
 ---
 
@@ -95,16 +109,9 @@ The detected species count, combined with the temperature reading, feeds a simpl
 - [Arduino App Lab IDE](https://docs.arduino.cc/software/app-lab/)
 - [Edge Impulse Studio](https://studio.edgeimpulse.com/) (Optional, for retraining)
 
-### Install & Run
+The project was developed and tested on the Arduino UNO Q using the Arduino App Lab environment.
 
-1. Download the BlauEdge.zip file from the repository.
-2. Open the Arduino App Lab environment.
-3. Upload the BlauEdge.zip file to import the project into your workspace.
-4. Plug in the Arduino UNO Q with the Modulino Thermo and USB Camera connected.
-5. Click the Run button in App Lab to provision the board and start the Python server.
-6. Open index.html to view the live dashboard!
-
-(If the camera stream fails or isn't plugged in, the UI will gracefully fall back to a "No Video Signal" placeholder while keeping environmental data flowing!)
+For the original project setup and full deployment instructions, see the [original team repository](https://github.com/emmaaleroux/BlauEdge).
 
 ---
 
@@ -121,10 +128,10 @@ The detected species count, combined with the temperature reading, feeds a simpl
 
 | Name | Role |
 |---|---|
-| [Agustina Ciaponi] | Python bridge |
-| [Emma Leroux Fernández-Armesto] | Arduino Hardware, Edge Impulse model |
-| [Martí Amat] | Python bridge |
-| [Guillem Arévalo Morell] | Dashboard + frontend |
+| Agustina Ciaponi | Python bridge |
+| Emma Leroux Fernández-Armesto | Arduino Hardware, Edge Impulse model |
+| Martí Amat | Python bridge |
+| Guillem Arévalo Morell | Dashboard + Frontend |
 
 **HackUPC 2026**
 
