@@ -20,9 +20,10 @@ Barcelona's breakwaters (*escolleres*) could be thriving underwater sanctuaries,
 
 BlauEdge is a real-time marine ecosystem monitoring system that evaluates the health of coastal zones along Barcelona's coastline using environmental sensing and AI-based species recognition:
 
-- **Temperature sensing** — detects thermal stress events that signal ecosystem decline.
-- **pH monitoring** — monitors water acidity to detect acidification events (currently simulated for prototype validation).
-- **AI species recognition** — uses a camera and an on-device Edge Impulse model to identify marine species on the breakwater surface.
+
+- **Temperature sensing** — detects thermal stress events that signal ecosystem decline
+- **pH level** — monitors water acidity to detect acidification events that threaten shell-based marine life and coral health (currently simulated for prototype validation).
+- **AI species recognition** — uses a camera and an on-device Edge Impulse model to recognize marine species on the breakwater surface, providing biodiversity data for ecosystem monitoring.
 
 The results are streamed live to an **interactive web dashboard** with a real map of the Barcelona coastline, showing the health state of each monitored zone in real time.
 
@@ -56,9 +57,10 @@ Built with **Edge Impulse Studio**, deployed on the Arduino UNO Q.
 
 - **Type:** FOMO object detection (Faster Objects, More Objects)
 - **Input:** Camera frames of the breakwater surface
-- **Output:** Detected marine species present in the frame
-- **Training data:** Manually collected and labelled images — no public dataset of local Barcelona coastal species exists, so we built our own from scratch.
+- **Output:** Marine species recognized in each camera frame
+- **Training data:** A custom dataset of manually collected and labelled images of local marine species.
 
+The goal of the model was not simply to detect individual animals, but to provide species-level observations that could be used as an indicator of marine biodiversity.
 The detected species count, combined with the temperature reading, feeds a simple classifier that assigns one of four health states:
 
 | State | Meaning |
@@ -72,23 +74,25 @@ The detected species count, combined with the temperature reading, feeds a simpl
 
 ## My Contribution
 
-This was a team project developed at HackUPC 2026. My main contributions were:
+This was a team project developed at HackUPC 2026. My main contributions focused on the hardware and AI species-recognition components:
 
 - Collected and manually labelled a custom dataset of local marine species.
-- Trained the **Edge Impulse FOMO object-detection model** for real-time species recognition.
-- Worked on the **Arduino UNO Q hardware integration**.
-- Integrated the AI species-recognition component into the monitoring system.
+- Trained an **Edge Impulse FOMO object-detection model** for real-time species recognition.
+- Worked on the **Arduino UNO Q hardware integration** and sensor communication.
+- Integrated the trained species-recognition model into the prototype for marine biodiversity monitoring.
 
 ---
 
 ### API (Python → Browser)
 
+The backend exposes REST endpoints for sensor data and historical time-series samples:
+
 | Endpoint | Method | What it returns |
-|---|---|---|
-| `/api/data` | GET | All node readings + notes |
-| `/api/nodes` | POST | Add / update a node |
-| `/api/notes` | POST | Add a field note |
-| `/api/notes/<id>` | DELETE | Remove a note |
+| --- | --- | --- |
+| `/api/temperature` | GET | Latest temperature reading |
+| `/api/humidity` | GET | Latest humidity reading |
+| `/api/all` | GET | Latest sensor values and derived metrics |
+| `/get_samples/{resource}/{start}/{aggr_window}` | GET | Historical aggregated sensor data |
 
 ---
 
@@ -111,7 +115,7 @@ This was a team project developed at HackUPC 2026. My main contributions were:
 
 The project was developed and tested on the Arduino UNO Q using the Arduino App Lab environment.
 
-For the original project setup and full deployment instructions, see the [original team repository](https://github.com/emmaaleroux/BlauEdge).
+For the complete original project and team implementation, see the [original team repository](https://github.com/emmaaleroux/BlauEdge).
 
 ---
 
