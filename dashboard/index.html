@@ -1514,7 +1514,7 @@ let tempSourceIsLive = false;
 // ── Real temperature fetch from main.py exposed API ───────────────
 // main.py exposes:  GET /api/temperature  → { value: float, ts: int }
 // and also:         GET /api/humidity     → { value: float, ts: int }
-// (added via ui.expose_api in the updated main.py)
+
 async function fetchArduinoTemp() {
   try {
     const base = APP_LAB_URL || '';
