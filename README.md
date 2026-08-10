@@ -27,7 +27,7 @@ BlauEdge is a real-time marine ecosystem monitoring system that evaluates the he
 
 The results are streamed live to an **interactive web dashboard** with a real map of the Barcelona coastline, showing the health state of each monitored zone in real time.
 
-A **simulation mode** keeps the dashboard fully functional even without hardware connected.
+The project also includes a dashboard interface for visualizing sensor readings, biodiversity scores, species detections, and the health state of each monitored zone. The full live experience is demonstrated in the project video.
 
 ---
 
